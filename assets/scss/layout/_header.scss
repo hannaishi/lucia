@@ -1,0 +1,311 @@
+@use "../global/variables" as *;
+
+.header {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    transition:
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--color-header-top), rgba(250, 249, 246, 0));
+    pointer-events: none;
+    transition:
+        background 0.4s ease,
+        backdrop-filter 0.4s ease;
+}
+
+.header.is-scrolled {
+    border-bottom-color: var(--color-header-line);
+    box-shadow: var(--shadow-header);
+}
+
+.header.is-scrolled::before {
+    background: var(--color-header-scrolled);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.header__inner {
+    display: flex;
+    width: #{"min(1220px, calc(100% - 64px))"};
+    height: 78px;
+    margin-inline: auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 5px;
+    line-height: 1;
+}
+
+.logo:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+.logo__en {
+    color: var(--color-accent);
+    font-family: Lora, serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.36em;
+}
+
+.logo__ja {
+    color: var(--color-text);
+    font-family: "Noto Serif JP", serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+}
+
+.global-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.global-nav__link {
+    position: relative;
+    padding: 6px 0;
+    color: var(--color-text);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+.global-nav__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s ease;
+}
+
+.global-nav__link:hover::after,
+.global-nav__link:focus-visible::after,
+.global-nav__link[aria-current="page"]::after {
+    transform: scaleX(1);
+}
+
+.global-nav__link[aria-current="page"] {
+    color: var(--color-primary);
+}
+
+.global-nav__link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+.global-nav__reservation {
+    flex-shrink: 0;
+    min-width: 112px;
+    min-height: 42px;
+    margin-left: 8px;
+    padding: 0 22px;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.global-nav__reservation:hover,
+.global-nav__reservation:focus-visible {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: var(--shadow-cta);
+}
+
+.global-nav__reservation:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.menu-button {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.menu-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.menu-button__line {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--color-text);
+    transition:
+        transform 0.4s ease,
+        opacity 0.4s ease;
+}
+
+.menu-button[aria-expanded="true"] .menu-button__line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.menu-button[aria-expanded="true"] .menu-button__line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button[aria-expanded="true"] .menu-button__line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-reservation {
+    display: none;
+}
+
+@media (max-width: $bp-nav) {
+    html {
+        scroll-padding-top: calc(56px + env(safe-area-inset-top));
+    }
+
+    .header,
+    .header.is-scrolled {
+        border-bottom-color: var(--color-header-line);
+        box-shadow: none;
+    }
+
+    .header::before,
+    .header.is-scrolled::before {
+        background: var(--color-header-solid);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header__inner {
+        width: 100%;
+        height: calc(48px + env(safe-area-inset-top));
+        padding: env(safe-area-inset-top) 16px 0;
+    }
+
+    .logo {
+        gap: 3px;
+    }
+
+    .logo__en {
+        font-size: 8px;
+        letter-spacing: 0.28em;
+    }
+
+    .logo__ja {
+        font-size: 13px;
+        letter-spacing: 0.08em;
+    }
+
+    .menu-button {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .global-nav {
+        position: fixed;
+        z-index: 100;
+        top: calc(48px + env(safe-area-inset-top));
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: calc(100dvh - 48px - env(safe-area-inset-top));
+        display: flex;
+        padding: 28px 28px calc(80px + env(safe-area-inset-bottom));
+        overflow-y: auto;
+        background: var(--color-bg);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        transform: translateX(100%);
+        transition: transform 0.4s ease;
+    }
+
+    .global-nav.is-open {
+        transform: none;
+    }
+
+    .global-nav__link {
+        padding: 16px 4px;
+        border-bottom: 1px solid var(--color-border);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+    }
+
+    .global-nav__link::after {
+        display: none;
+    }
+
+    .global-nav__reservation {
+        align-self: flex-start;
+        margin-top: 24px;
+        margin-left: 0;
+    }
+
+    .mobile-reservation {
+        position: fixed;
+        z-index: 120;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+        background: var(--color-primary);
+        color: var(--color-white);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        transition:
+            filter 0.3s ease,
+            background-color 0.3s ease;
+    }
+
+    .mobile-reservation:hover,
+    .mobile-reservation:focus-visible {
+        filter: brightness(1.08);
+    }
+
+    .mobile-reservation:active {
+        filter: brightness(0.94);
+    }
+
+    .mobile-reservation:focus-visible {
+        outline: 2px solid var(--color-bg);
+        outline-offset: -4px;
+    }
+}

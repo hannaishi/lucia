@@ -1,0 +1,230 @@
+@use "../../global/variables" as *;
+
+.clinic-concept,
+.clinic-doctor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 88px;
+    align-items: center;
+}
+
+.clinic-concept__picture,
+.clinic-doctor__picture {
+    display: block;
+}
+
+.clinic-concept__image,
+.clinic-doctor__image,
+.clinic-gallery__image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.clinic-concept__image {
+    height: 520px;
+    object-position: center;
+}
+
+.clinic-concept__caption {
+    margin: 20px 0 0;
+    color: var(--color-text-light);
+    font-family: "Noto Serif JP", serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+}
+
+.clinic-concept__text,
+.clinic-doctor__text,
+.clinic-features__lead {
+    margin: 0;
+    color: var(--color-text-light);
+    font-size: 14px;
+    line-height: 2.1;
+}
+
+.clinic-concept__text + .clinic-concept__text,
+.clinic-doctor__text + .clinic-doctor__text {
+    margin-top: 16px;
+}
+
+.clinic-concept__message {
+    margin: 32px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-primary);
+    font-family: "Noto Serif JP", serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+}
+
+.clinic-doctor__image {
+    height: 560px;
+    object-position: center 18%;
+}
+
+.clinic-doctor__sign {
+    margin: 32px 0 0;
+    color: var(--color-text);
+    font-family: "Noto Serif JP", serif;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+}
+
+.clinic__heading {
+    margin: 0 0 28px;
+    font-family: "Noto Serif JP", serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+}
+
+.clinic-profile {
+    max-width: 560px;
+}
+
+.clinic-profile__name {
+    margin: 8px 0 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-border);
+    font-family: "Noto Serif JP", serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+}
+
+.clinic-profile__role,
+.clinic-profile__credential {
+    margin: 0;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-light);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+}
+
+.clinic-features__lead {
+    max-width: 640px;
+    margin-bottom: 36px;
+}
+
+.clinic-features__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+}
+
+.clinic-feature {
+    margin: 0;
+    padding: 40px 36px 40px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.clinic-feature:nth-child(even) {
+    padding-left: 36px;
+    border-left: 1px solid var(--color-border);
+}
+
+.clinic-feature__number {
+    margin: 0 0 16px;
+    color: var(--color-accent);
+    font-family: Lora, serif;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+}
+
+.clinic-feature__title {
+    margin: 0 0 12px;
+    font-family: "Noto Serif JP", serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+}
+
+.clinic-feature__text {
+    margin: 0;
+    color: var(--color-text-light);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.clinic-gallery {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 16px;
+}
+
+.clinic-gallery__item {
+    margin: 0;
+    overflow: hidden;
+}
+
+.clinic-gallery__item--main {
+    grid-row: span 2;
+}
+
+.clinic-gallery__image {
+    height: 100%;
+}
+
+@media (max-width: $bp-sp) {
+    .clinic-concept,
+    .clinic-doctor {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .clinic-concept__image,
+    .clinic-doctor__image {
+        height: 260px;
+    }
+
+    .clinic-concept__text,
+    .clinic-doctor__text,
+    .clinic-features__lead,
+    .clinic-feature__text {
+        font-size: 13px;
+    }
+
+    .clinic__heading {
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+
+    .clinic-profile__name {
+        font-size: 24px;
+    }
+
+    .clinic-features__list {
+        grid-template-columns: 1fr;
+    }
+
+    .clinic-feature,
+    .clinic-feature:nth-child(even) {
+        padding: 28px 0;
+        border-left: 0;
+    }
+
+    .clinic-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+    }
+
+    .clinic-gallery__item--main {
+        grid-row: auto;
+    }
+
+    .clinic-gallery__image {
+        height: 200px;
+    }
+
+    .clinic-gallery__image--main {
+        height: 240px;
+    }
+}

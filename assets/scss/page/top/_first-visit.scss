@@ -1,0 +1,109 @@
+@use "../../global/variables" as *;
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.steps li {
+    position: relative;
+}
+
+.steps li:not(:last-child):after {
+    content: "";
+    position: absolute;
+    top: 48px;
+    left: 66%;
+    width: 75%;
+    height: 1px;
+    background: var(--color-line-pink);
+}
+
+.steps span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 96px;
+    height: 96px;
+    margin: auto;
+    border-radius: 50%;
+    background: var(--color-white);
+    box-shadow: var(--shadow-step);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Lora, serif;
+    font-size: 24px;
+}
+
+.steps span small {
+    color: var(--color-accent);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+}
+
+.steps h3 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.steps p {
+    color: var(--color-text-light);
+    font-size: 12px;
+}
+
+.belongings {
+    margin-top: 54px;
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: var(--color-white);
+}
+
+.belongings h3 {
+    font-family: "Noto Serif JP", serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.belongings ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-light);
+    font-size: 13px;
+}
+
+.belongings li:before {
+    content: "•";
+    margin-right: 8px;
+    color: var(--color-green);
+}
+
+@media (max-width: $bp-sp) {
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .steps li:not(:last-child):after {
+        display: none;
+    }
+
+    .belongings {
+        padding: 20px;
+    }
+
+    .belongings ul {
+        display: block;
+    }
+
+    .belongings li {
+        margin: 8px 0;
+    }
+}

@@ -1,0 +1,56 @@
+@use "../../global/variables" as *;
+
+.faq__list {
+    display: grid;
+    gap: 12px;
+}
+
+.faq-item {
+    overflow: hidden;
+    border-radius: 15px;
+    background: var(--color-white);
+}
+
+.faq-item h3 {
+    margin: 0;
+}
+
+.faq-item button {
+    width: 100%;
+    padding: 22px 24px;
+    border: 0;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    cursor: pointer;
+    font-family: "Noto Serif JP", serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.faq-item button i,
+.faq-item__answer i {
+    margin-right: 18px;
+    color: var(--color-accent);
+    font-family: Lora, serif;
+    font-size: 11px;
+}
+
+.faq-item button[aria-expanded="true"] b {
+    transform: rotate(180deg);
+}
+
+.faq-item__answer p {
+    margin: 0;
+    padding: 0 24px 22px;
+    color: var(--color-text-light);
+    font-size: 13px;
+}
+
+@media (max-width: $bp-sp) {
+    .faq-item button {
+        padding: 16px;
+        font-size: 11px;
+    }
+}

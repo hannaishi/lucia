@@ -1,0 +1,66 @@
+@use "../global/variables" as *;
+
+.eyebrow {
+    margin: 0 0 16px;
+    color: var(--color-accent);
+    font-family: Lora, serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.3em;
+}
+
+.section-title {
+    margin: 0;
+    font-family: "Noto Serif JP", serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.section-title--small {
+    font-size: 22px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.section-heading > p:last-child {
+    margin: 14px 0 0;
+    color: var(--color-text-light);
+    font-size: 14px;
+}
+
+.divider {
+    display: block;
+    width: 40px;
+    height: 1px;
+    margin: 25px 0;
+    background: var(--color-accent);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+@media (max-width: $bp-sp) {
+    .section-title {
+        font-size: 25px;
+    }
+
+    .section-heading {
+        margin-bottom: 42px;
+    }
+
+    .section-heading > p:last-child {
+        font-size: 12px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}

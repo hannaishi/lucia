@@ -1,0 +1,70 @@
+@use "../global/variables" as *;
+
+.reservation {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-primary);
+    color: var(--color-white);
+    text-align: center;
+}
+
+.reservation:before,
+.reservation:after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 450px;
+    border: 1px solid var(--color-reservation-ring);
+    border-radius: 50%;
+    transform: rotate(-20deg);
+    left: 9%;
+    top: 10%;
+}
+
+.reservation:after {
+    left: auto;
+    right: 9%;
+    transform: rotate(20deg);
+}
+
+.reservation .eyebrow {
+    color: var(--color-bg-pink);
+}
+
+.reservation p {
+    font-size: 14px;
+}
+
+.reservation .button {
+    margin: 38px 6px 25px;
+}
+
+.reservation small {
+    display: block;
+    color: var(--color-reservation-note);
+}
+
+@media (max-width: $bp-sp) {
+    .reservation {
+        padding: 70px 0;
+    }
+
+    .reservation .section-title {
+        font-size: 24px;
+    }
+
+    .reservation p {
+        font-size: 11px;
+    }
+
+    .reservation .button {
+        display: flex;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .reservation small {
+        margin-top: 20px;
+        font-size: 9px;
+    }
+}

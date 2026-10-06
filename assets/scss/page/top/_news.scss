@@ -1,0 +1,78 @@
+@use "../../global/variables" as *;
+
+.news {
+    padding: 48px 0;
+    background: var(--color-bg-ivory);
+}
+
+.news__inner {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 40px;
+}
+
+.news__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.news__list li {
+    display: grid;
+    grid-template-columns: 70px 72px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 14px;
+}
+
+.news__list li:last-child {
+    border: 0;
+}
+
+.news__list time {
+    font-family: Lora, serif;
+    font-size: 11px;
+    color: var(--color-text-light);
+}
+
+.news__list span {
+    border: 1px solid var(--color-accent);
+    border-radius: 20px;
+    color: var(--color-accent);
+    text-align: center;
+    font-size: 11px;
+}
+
+@media (max-width: $bp-sp) {
+    .news {
+        padding: 0 0 40px;
+    }
+
+    .news__inner {
+        display: block;
+        width: 100%;
+        padding: 10px 18px 0;
+    }
+
+    .news .eyebrow {
+        display: none;
+    }
+
+    .news__list li {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 12px 0;
+    }
+
+    .news__list span {
+        width: 100%;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .news__list a {
+        font-size: 11px;
+    }
+}

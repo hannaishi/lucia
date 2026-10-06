@@ -1,0 +1,25 @@
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .header,
+    .header::before,
+    .global-nav,
+    .global-nav__link::after,
+    .menu-button__line,
+    .button,
+    .mobile-reservation {
+        transition: none;
+    }
+
+    * {
+        animation: none !important;
+    }
+}

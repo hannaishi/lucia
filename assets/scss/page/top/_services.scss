@@ -1,0 +1,54 @@
+@use "../../global/variables" as *;
+
+.service-card {
+    min-height: 250px;
+    padding: 30px;
+    border-radius: 16px;
+    background: var(--color-bg-ivory);
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-service);
+}
+
+.service-card > b {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--color-accent);
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.service-card h3 {
+    margin: 0 0 8px;
+    font-family: "Noto Serif JP", serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.service-card p {
+    margin: 0;
+    color: var(--color-text-light);
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.service-card a {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--color-accent);
+    font-size: 13px;
+}
+
+@media (max-width: $bp-sp) {
+    .service-card {
+        min-height: 0;
+        padding: 28px 22px;
+    }
+
+    .service-card p {
+        font-size: 11px;
+    }
+}

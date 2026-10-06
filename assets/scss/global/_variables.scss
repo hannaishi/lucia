@@ -1,0 +1,44 @@
+$bp-sp: 767px;
+$bp-nav: 900px;
+
+:root {
+    --color-bg: #faf9f6;
+    --color-bg-ivory: #f2ede4;
+    --color-bg-pink: #edd9d9;
+    --color-bg-cream: #f5f1e9;
+    --color-bg-stone: #e4e1dc;
+    --color-sage: #d0dac8;
+
+    --color-text: #2c2421;
+    --color-text-light: #837874;
+    --color-taupe: #7a5c50;
+
+    --color-primary: #87324d;
+    --color-accent: #c9a4a4;
+    --color-green: #91aa7d;
+    --color-line-pink: #d7bebe;
+
+    --color-white: #fff;
+    --color-border: #ded8d0;
+    --color-outline: #aaa;
+
+    --color-bg-glass: rgba(250, 249, 246, 0.72);
+    --color-header-top: rgba(250, 249, 246, 0.55);
+    --color-header-scrolled: rgba(250, 249, 246, 0.86);
+    --color-header-solid: rgba(250, 249, 246, 0.96);
+    --color-header-line: rgba(222, 216, 208, 0.75);
+    --shadow-header: 0 1px 8px rgba(44, 36, 33, 0.05);
+    --shadow-cta: 0 6px 14px rgba(135, 50, 77, 0.16);
+
+    --shadow-card: 0 18px 35px rgba(44, 36, 33, 0.0862745098);
+    --shadow-service: 0 16px 35px rgba(44, 36, 33, 0.0705882353);
+    --shadow-step: 0 10px 25px rgba(125, 51, 73, 0.062745098);
+
+    --color-footer-text: rgba(255, 255, 255, 0.6);
+    --color-footer-muted: rgba(255, 255, 255, 0.3333333333);
+    --color-footer-line: rgba(255, 255, 255, 0.0823529412);
+    --color-footer-faint: rgba(255, 255, 255, 0.3137254902);
+    --color-reservation-ring: rgba(255, 255, 255, 0.0941176471);
+    --color-reservation-note: rgba(255, 255, 255, 0.5019607843);
+    --color-ghost-border: rgba(255, 255, 255, 0.4);
+}

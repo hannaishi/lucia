@@ -1,0 +1,69 @@
+@use "../../global/variables" as *;
+
+.concept__grid,
+.doctor__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.concept__visual {
+    position: relative;
+}
+
+.concept__visual img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 0 24px 24px 0;
+}
+
+.concept__visual > p {
+    position: absolute;
+    left: -30px;
+    bottom: -18px;
+    margin: 0;
+    padding: 22px;
+    background: var(--color-white);
+    border-radius: 18px;
+    box-shadow: var(--shadow-card);
+    font-family: "Noto Serif JP", serif;
+}
+
+.concept__body > p:not(.eyebrow):not(.concept__message) {
+    color: var(--color-text-light);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.concept__message {
+    margin-top: 35px;
+    color: var(--color-text-light);
+    font-size: 12px;
+}
+
+@media (max-width: $bp-sp) {
+    .concept__grid,
+    .doctor__grid {
+        display: flex;
+        gap: 48px;
+        flex-direction: column;
+    }
+
+    .concept__visual img {
+        height: 270px;
+        border-radius: 0 16px 16px 0;
+    }
+
+    .concept__visual > p {
+        left: -12px;
+        bottom: -18px;
+        padding: 15px;
+        font-size: 11px;
+    }
+
+    .concept__body > p:not(.eyebrow):not(.concept__message) {
+        font-size: 11px;
+    }
+}

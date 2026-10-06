@@ -1,0 +1,68 @@
+@use "../../global/variables" as *;
+
+.doctor__body > p {
+    color: var(--color-text-light);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.doctor__visual {
+    position: relative;
+}
+
+.doctor__visual:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -16px;
+    bottom: -16px;
+    width: 95px;
+    height: 95px;
+    background: var(--color-sage);
+    border-radius: 16px;
+}
+
+.doctor__visual img {
+    width: 100%;
+    height: 610px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 22px;
+}
+
+.doctor__name {
+    margin-top: 34px !important;
+    color: var(--color-text) !important;
+    font-family: "Noto Serif JP", serif;
+}
+
+.doctor__name small {
+    display: block;
+    margin-top: 5px;
+    color: var(--color-text-light);
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+@media (max-width: $bp-sp) {
+    .doctor__grid {
+        flex-direction: column-reverse;
+    }
+
+    .doctor__body > p {
+        font-size: 11px;
+    }
+
+    .doctor__visual img {
+        height: 330px;
+        object-position: center 15%;
+    }
+
+    .doctor__visual:after {
+        right: -8px;
+        bottom: -8px;
+        width: 65px;
+        height: 65px;
+    }
+}

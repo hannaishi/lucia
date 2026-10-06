@@ -1,0 +1,203 @@
+@use "../../global/variables" as *;
+
+.access-page__intro {
+    margin-bottom: 40px;
+}
+
+.access-page__lead,
+.access-page__text,
+.access-page__reserve-text {
+    margin: 0;
+    color: var(--color-text-light);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.access-page__lead {
+    max-width: 640px;
+    margin-top: 16px;
+}
+
+.access-page__text + .access-page__text {
+    margin-top: 6px;
+}
+
+.access-page__map {
+    height: 460px;
+    margin-bottom: 48px;
+    border: 1px solid var(--color-border);
+}
+
+.access-page__frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.access-page__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 80px;
+}
+
+.access-page__address-block {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.access-page__route-block {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.access-page__hours-block {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.access-page__tel-block {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.access-page__block {
+    padding: 28px 0 32px;
+    border-top: 1px solid var(--color-border);
+}
+
+.access-page__route-block,
+.access-page__tel-block {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.access-page__heading {
+    margin: 0 0 18px;
+    font-family: "Noto Serif JP", serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+}
+
+.access-page__address {
+    margin: 0;
+    color: var(--color-text);
+    font-family: "Noto Serif JP", serif;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 2;
+}
+
+.access-page__hours-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.access-page__hours-label,
+.access-page__hours-time {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.access-page__hours-label {
+    padding-right: 16px;
+    color: var(--color-text);
+    font-family: "Noto Serif JP", serif;
+}
+
+.access-page__hours-time {
+    color: var(--color-text-light);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.access-page__hours-time--closed {
+    color: var(--color-primary);
+}
+
+.access-page__tel-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-primary);
+    font-family: "Noto Serif JP", serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--color-line-pink);
+}
+
+.access-page__tel-link:hover,
+.access-page__tel-link:focus-visible,
+.access-page__reserve-link:hover,
+.access-page__reserve-link:focus-visible {
+    color: var(--color-text);
+}
+
+.access-page__tel-link:focus-visible,
+.access-page__reserve-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.access-page__reserve {
+    max-width: 640px;
+    margin-top: 48px;
+}
+
+.access-page__reserve-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--color-primary);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--color-line-pink);
+}
+
+@media (max-width: $bp-sp) {
+    .access-page__lead,
+    .access-page__text,
+    .access-page__reserve-text {
+        font-size: 13px;
+    }
+
+    .access-page__map {
+        height: 280px;
+        margin-bottom: 28px;
+    }
+
+    .access-page__details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .access-page__address-block,
+    .access-page__route-block,
+    .access-page__hours-block,
+    .access-page__tel-block {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .access-page__heading {
+        margin-bottom: 12px;
+        font-size: 20px;
+    }
+
+    .access-page__route-block {
+        border-bottom: 0;
+    }
+
+    .access-page__hours-label,
+    .access-page__hours-time {
+        font-size: 14px;
+    }
+
+    .access-page__reserve {
+        margin-top: 36px;
+    }
+}

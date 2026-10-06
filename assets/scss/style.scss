@@ -1,0 +1,32 @@
+@use "global/variables";
+@use "global/base";
+@use "global/animation";
+
+@use "component/button";
+@use "component/common";
+@use "component/page-kv";
+@use "component/breadcrumb";
+
+@use "layout/header";
+@use "layout/footer";
+
+@use "page/top/hero";
+@use "page/top/news";
+@use "page/top/concept";
+@use "page/top/concerns";
+@use "page/top/services";
+@use "page/top/first-visit";
+@use "page/top/doctor";
+@use "page/top/features";
+@use "page/top/access";
+@use "page/top/faq";
+@use "page/services/services" as services-page;
+@use "page/services/service-detail" as service-detail;
+@use "page/first-visit/first-visit" as first-visit-page;
+@use "page/clinic/clinic" as clinic-page;
+@use "page/access/access" as access-page;
+@use "page/faq/faq" as faq-page;
+
+@use "component/reservation";
+
+@use "global/reduced-motion";
