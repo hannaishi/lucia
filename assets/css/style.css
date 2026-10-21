@@ -762,6 +762,9 @@ button {
 }
 
 @media (max-width: 767px) {
+  .hero__scroll {
+    display: none;
+  }
   .hero {
     height: 584px;
     min-height: 0;
