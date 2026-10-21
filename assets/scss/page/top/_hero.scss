@@ -94,6 +94,10 @@
 }
 
 @media (max-width: $bp-sp) {
+    .hero__scroll {
+        display: none;
+    }
+
     .hero {
         height: 584px;
         min-height: 0;
