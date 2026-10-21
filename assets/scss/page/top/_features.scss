@@ -82,11 +82,12 @@
     }
 
     .gallery {
+        grid-template-columns: 1fr;
         gap: 8px;
     }
 
     .gallery img {
-        height: 56px;
+        height: auto;
         border-radius: 10px;
     }
 }

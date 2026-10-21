@@ -67,9 +67,9 @@
     }
 
     .news__list span {
-        width: 100%;
-        text-align: left;
-        padding-left: 10px;
+        justify-self: start;
+        width: fit-content;
+        padding-inline: 10px;
     }
 
     .news__list a {

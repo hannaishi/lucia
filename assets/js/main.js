@@ -27,36 +27,42 @@
         ],
     ];
     const services = [
-        [
-            "♧",
-            "婦人科一般外来",
-            "月経不順・PMS・おりもの・下腹部痛など、日常的な婦人科のお悩みに幅広く対応します。",
-        ],
-        [
-            "♙",
-            "産科・妊婦健診",
-            "妊娠初期から産後まで、ひとりひとりに寄り添った安心のマタニティケアを提供します。",
-        ],
-        [
-            "☼",
-            "更年期・ホルモン外来",
-            "ホットフラッシュ・不眠・気分の変化など、更年期症状の緩和と女性ホルモンのケアを行います。",
-        ],
-        [
-            "⌕",
-            "子宮・卵巣がん検診",
-            "定期的な検診で早期発見・早期治療を。子宮頸がん・体がん・卵巣エコーを一度に受診できます。",
-        ],
-        [
-            "⊕",
-            "避妊・ピル処方",
-            "低用量ピル・IUD・緊急避妊薬など、お一人おひとりのライフスタイルに合わせた選択肢をご提案します。",
-        ],
-        [
-            "◎",
-            "ブライダルチェック",
-            "結婚を控えた方の婦人科的健康確認と、STI検査・風疹抗体検査などをまとめて受けられます。",
-        ],
+        {
+            icon: "♧",
+            title: "婦人科一般外来",
+            description: "月経不順・PMS・おりもの・下腹部痛など、日常的な婦人科のお悩みに幅広く対応します。",
+            href: "services.html#service-general",
+        },
+        {
+            icon: "♙",
+            title: "産科・妊婦健診",
+            description: "妊娠初期から産後まで、ひとりひとりに寄り添った安心のマタニティケアを提供します。",
+            href: "services.html#service-maternity",
+        },
+        {
+            icon: "☼",
+            title: "更年期・ホルモン外来",
+            description: "ホットフラッシュ・不眠・気分の変化など、更年期症状の緩和と女性ホルモンのケアを行います。",
+            href: "services.html#service-menopause",
+        },
+        {
+            icon: "⌕",
+            title: "子宮・卵巣がん検診",
+            description: "定期的な検診で早期発見・早期治療を。子宮頸がん・体がん・卵巣エコーを一度に受診できます。",
+            href: "services.html#service-screening",
+        },
+        {
+            icon: "⊕",
+            title: "避妊・ピル処方",
+            description: "低用量ピル・IUD・緊急避妊薬など、お一人おひとりのライフスタイルに合わせた選択肢をご提案します。",
+            href: "services.html#service-contraception",
+        },
+        {
+            icon: "◎",
+            title: "ブライダルチェック",
+            description: "結婚を控えた方の婦人科的健康確認と、STI検査・風疹抗体検査などをまとめて受けられます。",
+            href: "services.html#service-bridal",
+        },
     ];
     const steps = [
         [
@@ -145,8 +151,8 @@
         ".card-grid--services",
         services
             .map(
-                (x) =>
-                    `<article class="service-card reveal"><b aria-hidden="true">${x[0]}</b><h3>${x[1]}</h3><p>${x[2]}</p><a href="#reservation">詳しく見る　→</a></article>`,
+                ({ icon, title, description, href }) =>
+                    `<article class="service-card reveal"><b aria-hidden="true">${icon}</b><h3>${title}</h3><p>${description}</p><a href="${href}">診療案内を見る　→</a></article>`,
             )
             .join(""),
     );
@@ -180,20 +186,48 @@
     const header = document.querySelector(".header"),
         menu = document.querySelector(".menu-button"),
         nav = document.querySelector(".global-nav");
-    const closeMenu = () => {
-        menu?.setAttribute("aria-expanded", "false");
-        nav?.classList.remove("is-open");
-        document.body.classList.remove("menu-open");
+    const mobileNav = window.matchMedia("(max-width: 900px)");
+    const focusMenuLink = () => {
+        const link = nav?.querySelector('a[aria-current="page"]') || nav?.querySelector("a");
+        link?.focus({ preventScroll: true });
+    };
+    const setMenuOpen = (open, restoreFocus = false) => {
+        open = mobileNav.matches && open;
+        menu?.setAttribute("aria-expanded", String(open));
+        menu?.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+        nav?.classList.toggle("is-open", open);
+        document.body.classList.toggle("menu-open", open);
+        if (!open && (restoreFocus || (mobileNav.matches && nav?.contains(document.activeElement)))) {
+            menu?.focus({ preventScroll: true });
+        }
+        if (nav) nav.inert = mobileNav.matches && !open;
+        if (open) focusMenuLink();
+    };
+    let lastFocusedElement = document.activeElement;
+    document.addEventListener("focusin", (event) => {
+        lastFocusedElement = event.target;
+    });
+    const syncMenuViewport = () => {
+        // A button hidden by the desktop CSS may already have lost focus.
+        const buttonFocused = document.activeElement === menu ||
+            (document.activeElement === document.body && lastFocusedElement === menu);
+        setMenuOpen(false);
+        if (!mobileNav.matches && buttonFocused) focusMenuLink();
     };
     menu?.addEventListener("click", () => {
-        const open = menu.getAttribute("aria-expanded") === "true";
-        menu.setAttribute("aria-expanded", String(!open));
-        nav.classList.toggle("is-open", !open);
-        document.body.classList.toggle("menu-open", !open);
+        setMenuOpen(menu.getAttribute("aria-expanded") !== "true");
     });
     nav?.querySelectorAll("a").forEach((a) =>
-        a.addEventListener("click", closeMenu),
+        a.addEventListener("click", () => setMenuOpen(false)),
     );
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileNav.matches && menu?.getAttribute("aria-expanded") === "true") {
+            event.preventDefault();
+            setMenuOpen(false, true);
+        }
+    });
+    mobileNav.addEventListener("change", syncMenuViewport);
+    syncMenuViewport();
     window.addEventListener(
         "scroll",
         () => header?.classList.toggle("is-scrolled", scrollY > 20),
