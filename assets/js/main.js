@@ -186,20 +186,48 @@
     const header = document.querySelector(".header"),
         menu = document.querySelector(".menu-button"),
         nav = document.querySelector(".global-nav");
-    const closeMenu = () => {
-        menu?.setAttribute("aria-expanded", "false");
-        nav?.classList.remove("is-open");
-        document.body.classList.remove("menu-open");
+    const mobileNav = window.matchMedia("(max-width: 900px)");
+    const focusMenuLink = () => {
+        const link = nav?.querySelector('a[aria-current="page"]') || nav?.querySelector("a");
+        link?.focus({ preventScroll: true });
+    };
+    const setMenuOpen = (open, restoreFocus = false) => {
+        open = mobileNav.matches && open;
+        menu?.setAttribute("aria-expanded", String(open));
+        menu?.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+        nav?.classList.toggle("is-open", open);
+        document.body.classList.toggle("menu-open", open);
+        if (!open && (restoreFocus || (mobileNav.matches && nav?.contains(document.activeElement)))) {
+            menu?.focus({ preventScroll: true });
+        }
+        if (nav) nav.inert = mobileNav.matches && !open;
+        if (open) focusMenuLink();
+    };
+    let lastFocusedElement = document.activeElement;
+    document.addEventListener("focusin", (event) => {
+        lastFocusedElement = event.target;
+    });
+    const syncMenuViewport = () => {
+        // A button hidden by the desktop CSS may already have lost focus.
+        const buttonFocused = document.activeElement === menu ||
+            (document.activeElement === document.body && lastFocusedElement === menu);
+        setMenuOpen(false);
+        if (!mobileNav.matches && buttonFocused) focusMenuLink();
     };
     menu?.addEventListener("click", () => {
-        const open = menu.getAttribute("aria-expanded") === "true";
-        menu.setAttribute("aria-expanded", String(!open));
-        nav.classList.toggle("is-open", !open);
-        document.body.classList.toggle("menu-open", !open);
+        setMenuOpen(menu.getAttribute("aria-expanded") !== "true");
     });
     nav?.querySelectorAll("a").forEach((a) =>
-        a.addEventListener("click", closeMenu),
+        a.addEventListener("click", () => setMenuOpen(false)),
     );
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileNav.matches && menu?.getAttribute("aria-expanded") === "true") {
+            event.preventDefault();
+            setMenuOpen(false, true);
+        }
+    });
+    mobileNav.addEventListener("change", syncMenuViewport);
+    syncMenuViewport();
     window.addEventListener(
         "scroll",
         () => header?.classList.toggle("is-scrolled", scrollY > 20),
